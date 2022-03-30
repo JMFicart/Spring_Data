@@ -1,7 +1,5 @@
 package bstorm.jmficart.demo_jpa.config;
 
-import bstorm.jmficart.demo_jpa.Boite;
-import bstorm.jmficart.demo_jpa.data.SectionDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.util.Scanner;

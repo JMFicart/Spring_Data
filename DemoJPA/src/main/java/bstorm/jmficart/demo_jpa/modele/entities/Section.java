@@ -1,8 +1,6 @@
 package bstorm.jmficart.demo_jpa.modele.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +9,8 @@ import javax.persistence.Id;
 @Entity
 @Getter @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Section {
     @Id
     @Column(name = "section_id", columnDefinition = "INT(11)")
@@ -19,5 +19,14 @@ public class Section {
     private String name;
     @Column(columnDefinition = "INT(11)")
     private Long delegateId;
-    // Integer accepte null
+    // Long accepte null
+
+//    public Section(long id, String name, Long delegateId) {
+//        this.id = id;
+//        this.name = name;
+//        this.delegateId = delegateId;
+//    }
+
+//    public Section() {
+//    }
 }
