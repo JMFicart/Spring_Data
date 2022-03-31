@@ -34,15 +34,17 @@ public class DemoJpaRefApplication {
 				"password",
 				"nom",
 				"prenom",
-				null	);
+				null,
+				null,
+				null);
 
-//		v = vRepo.save(v);
-//		u.setVoitures(List.of(v));
-//		u = uRepo.save(u);
+		v = vRepo.save(v);
+		u.setVoitures(List.of(v));
+		u = uRepo.save(u);
 
 		// Liaison faible : ne fera rien
-		u = uRepo.save(u);
-		v.setProprietaires(List.of(u));
-		v = vRepo.save(v);
+//		u = uRepo.save(u);
+//		v.setProprietaires(List.of(u));
+//		v = vRepo.save(v);
 	}
 }

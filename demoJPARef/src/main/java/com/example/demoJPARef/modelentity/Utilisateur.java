@@ -35,4 +35,9 @@ public class Utilisateur {
     @ManyToMany
     private List<Voiture> voitures;
 
+    @OneToMany(mappedBy = "detenteur")
+    private List<Permis> permis;
+
+    @OneToOne
+    private Adresse adresse;
 }
