@@ -1,4 +1,4 @@
-package modelentity;
+package com.example.demoJPARef.modelentity;
 
 public enum Carburant {
     Essence,

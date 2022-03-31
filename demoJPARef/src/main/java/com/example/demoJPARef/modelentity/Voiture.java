@@ -1,4 +1,4 @@
-package modelentity;
+package com.example.demoJPARef.modelentity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,8 +33,11 @@ public class Voiture {
     @Column(length = 20, nullable = false)
     private Carburant carburant;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20)
-    private Carburant carburant_2;
+//    @Enumerated(EnumType.STRING)
+//    @Column(length = 20)
+//    private Carburant carburant_2;
+
+    @ManyToMany(mappedBy = "voitures")
+    private List<Utilisateur> proprietaires;
 
 }
