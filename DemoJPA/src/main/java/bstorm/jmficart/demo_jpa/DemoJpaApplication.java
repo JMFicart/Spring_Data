@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import javax.persistence.Column;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootApplication
@@ -55,23 +57,22 @@ public class DemoJpaApplication {
 //		System.out.println(coursmodifie);
 
 		// Professor
-		ProfessorRepository repo = context.getBean(ProfessorRepository.class);
-		Professor p = repo.getOne(1);
-		System.out.println(p);
+		ProfessorRepository repoprof = context.getBean(ProfessorRepository.class);
+//		Professor p = repoprof.getOne(1);
+//		System.out.println(p);
 
-//		List<Cours> list = repo.getAll();
+//		List<Professor> list = repoprof.getAll();
 //		list.forEach(System.out::println);
 
-//		Cours c1 = new Cours("GG0000", "to delete", 0, 1);
-//		repo.insert(c1);
+//		Professor c1 = new Professor(7, "Sherman Trump", "Titus", 7777, 412, "sherman.trump@ubc.us",
+//										LocalDateTime.of(2022,02,01,00,00), 2500);
+//		repoprof.insert(c1);
 
-//		Cours c2 = repo.delete("GG0000");
+//		c1.setSurname("Professeur Foldingue");
+//		Professor profmodifie = repoprof.update(c1);
+//		System.out.println(profmodifie);
+
+//		Professor c2 = repoprof.delete(7);
 //		System.out.println(c2);
-
-//		c1.setName("nom modifié");
-//		Cours coursmodifie = repo.update(c1);
-//		System.out.println(coursmodifie);
-
-
 	}
 }

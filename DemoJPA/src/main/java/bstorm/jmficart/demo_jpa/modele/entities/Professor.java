@@ -23,7 +23,7 @@ public class Professor {
     @Column(name = "professor_surname", length = 30)
     private String surname;
     @Column(name = "section_id", columnDefinition = "INT(11)")
-    private String sectionid;
+    private Integer sectionid;
     @Column(name = "professor_office", columnDefinition = "INT(11)")
     private Integer office;
     @Column(name = "professor_email", length = 30)
