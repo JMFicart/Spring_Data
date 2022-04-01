@@ -4,13 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import java.util.List;
-
 @SpringBootApplication
-public class DemoJpaRefApplication {
+public class HotelApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(DemoJpaRefApplication.class, args);
+		ApplicationContext ctx = SpringApplication.run(HotelApplication.class, args);
 
 //		VoitureRepository vRepo = ctx.getBean(VoitureRepository.class);
 //		UtilisateurRepository uRepo = ctx.getBean(UtilisateurRepository.class);

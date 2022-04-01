@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -16,7 +18,7 @@ import javax.persistence.*;
 public class Chambre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "chambre_id", nullable = false)
     private Long id;
 
     @Column(name = "aTele", nullable = false)
@@ -28,6 +30,17 @@ public class Chambre {
     @Column(name = "aMiniBar", nullable = false)
     private boolean aMiniBar;
 
-    @Column(name = "prix", nullable = false)
+    @Column(name = "prix", nullable = false, precision = 2)
     private float prix;
+
+    @ManyToOne
+    private Hotel hotel;
+
+    @ManyToMany
+    @JoinTable(name = "visite",
+        joinColumns = @JoinColumn(name = "chambre_id"),
+        inverseJoinColumns = @JoinColumn(name = "visiteur_id"),
+        uniqueConstraints = @UniqueConstraint(name = "UNIK_visiteur_chambre",
+        columnNames = {"chambre_id", "visiteur_id"}))
+    private List<Client> clients = new ArrayList<>();
 }

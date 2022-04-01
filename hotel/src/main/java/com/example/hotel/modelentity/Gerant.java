@@ -29,7 +29,7 @@ public class Gerant {
     @Column(name = "debutcarriere", nullable = false)
     private LocalDate debutcarriere;
 
-    @OneToOne
+    @OneToOne(mappedBy = "gerant")
     private Hotel hotel;
 
 }

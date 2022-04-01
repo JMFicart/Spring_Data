@@ -1,7 +1,18 @@
 package com.example.hotel.modelentity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "client")
 public class Client {
@@ -10,11 +21,13 @@ public class Client {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "nom", nullable = false, length = 30)
+    private String nom;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "prenom", nullable = false, length = 30)
+    private String prenom;
+
+    @ManyToMany(mappedBy = "clients")
+    private List<Chambre> chambres = new ArrayList<>();
+
 }

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -22,13 +24,17 @@ public class Hotel {
     @Column(name = "nom", nullable = false, length = 30)
     private String nom;
 
-    @Column(name = "nbretoile", nullable = false)
+    @Column(name = "nbretoile", columnDefinition = "INT NOT NULL CHECK (nbretoile BETWEEN 1 AND 5)")
     private int nbrEtoile;
 
-    @Column(name = "adresse", nullable = false, length = 60)
+    @Column(name = "adresse", nullable = false, columnDefinition = "VARCHAR(200) DEFAULT 'Inconnue'")
     private String adresse;
 
-    @OneToOne(mappedBy = "hotel")
+    @OneToOne
+    @JoinColumn(name="manager_id", foreignKey = @ForeignKey(name = "FK_HOTEL_GERANT_IS"))
     private Gerant gerant;
+
+    @OneToMany(mappedBy = "hotel")
+    private List<Chambre> chambres = new ArrayList<>();
 
 }
