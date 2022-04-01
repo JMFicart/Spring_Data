@@ -1,39 +1,40 @@
-package com.example.hotel.modelentity;
+package com.example.hotel.models.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
+@Setter @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "chambre")
 public class Chambre {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "chambre_id", nullable = false)
-    private Long id;
+    @Column(name = "num_Chambre", nullable = false)
+    private int numChambre;
 
+    @NonNull
     @Column(name = "aTele", nullable = false)
     private boolean aTele;
 
+    @NonNull
     @Column(name = "aCuisine", nullable = false)
     private boolean aCuisine;
 
+    @NonNull
     @Column(name = "aMiniBar", nullable = false)
     private boolean aMiniBar;
 
+    @NonNull
     @Column(name = "prix", nullable = false, precision = 2)
     private float prix;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Hotel hotel;
 
     @ManyToMany

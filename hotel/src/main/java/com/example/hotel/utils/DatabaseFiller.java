@@ -1,7 +1,7 @@
 package com.example.hotel.utils;
 
-import com.example.hotel.modelentity.Hotel;
-import com.example.hotel.repository.HotelRepository;
+import com.example.hotel.models.entities.Hotel;
+import com.example.hotel.data.repository.HotelRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 

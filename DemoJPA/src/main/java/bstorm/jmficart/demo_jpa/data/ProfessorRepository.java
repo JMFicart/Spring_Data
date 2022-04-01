@@ -48,7 +48,7 @@ public class ProfessorRepository {
         if(p != null) {
             p.setName(toUpdate.getName());
             p.setSurname(toUpdate.getSurname());
-            p.setSectionid(toUpdate.getSectionid());
+//            p.setSectionid(toUpdate.getSectionid());
             p.setEmail(toUpdate.getEmail());
             p.setOffice(toUpdate.getOffice());
             p.setHiredate(toUpdate.getHiredate());

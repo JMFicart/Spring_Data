@@ -1,9 +1,6 @@
-package com.example.hotel.modelentity;
+package com.example.hotel.models.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +9,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "gerant")
 public class Gerant {
@@ -20,16 +18,16 @@ public class Gerant {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "nom", nullable = false, length = 30)
+    @Column(name = "nom", nullable = false, length = 50)
     private String nom;
 
-    @Column(name = "prenom", nullable = false, length = 30)
+    @Column(name = "prenom", nullable = false, length = 50)
     private String prenom;
 
-    @Column(name = "debutcarriere", nullable = false)
+    @Column(name = "debutcarriere")
     private LocalDate debutcarriere;
 
     @OneToOne(mappedBy = "gerant")
-    private Hotel hotel;
+    private Hotel gere;
 
 }
