@@ -1,6 +1,7 @@
 package com.example.hotel.metier.service;
 
 import com.example.hotel.data.repository.GerantRepository;
+import com.example.hotel.exceptions.ElementNotFoundException;
 import com.example.hotel.metier.mapper.GerantMapper;
 import com.example.hotel.models.dtos.GerantDto;
 import com.example.hotel.models.entities.Gerant;
@@ -28,21 +29,34 @@ public class GerantServiceImpl implements GerantService {
 
     @Override
     public GerantDto getOne(Long id) {
-        return null;
+        return repository.findById(id)
+                .map(mapper::entityToDto)
+                .orElseThrow(() -> new ElementNotFoundException(id, GerantDto.class));
     }
 
     @Override
     public List<GerantDto> getAll() {
-        return null;
+        return repository.findAll().stream()
+                .map(mapper::entityToDto)
+                .toList();
     }
 
     @Override
     public GerantDto update(Long id, GerantForm form) {
-        return null;
+        Gerant entity = repository.findById(id)
+                        .orElseThrow(() -> new ElementNotFoundException(id, GerantDto.class));
+        entity.setNom(form.getNom());
+        entity.setPrenom(form.getPrenom());
+        entity.setDebutcarriere(form.getDebutCarriere());
+
+        repository.save(entity);
+        return mapper.entityToDto(entity);
     }
 
     @Override
     public GerantDto delete(Long id) {
-        return null;
+        GerantDto dto = getOne(id);
+        repository.deleteById(id);
+        return dto;
     }
 }
