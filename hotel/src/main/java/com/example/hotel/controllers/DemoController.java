@@ -1,16 +1,20 @@
 package com.example.hotel.controllers;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.security.RolesAllowed;
 
 @RestController
+@RequestMapping("/demo")
 public class DemoController {
-    @GetMapping("/demo/headers")
+    @GetMapping("/headers")
     public ResponseEntity<?> getHeaders(@RequestHeader HttpHeaders headers){
         headers.forEach((key, value) -> {
             System.out.println(key + "-" + value.get(0));
@@ -21,13 +25,13 @@ public class DemoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/demo/header")
+    @GetMapping("/header")
     public ResponseEntity<?> getHeader(@RequestHeader(HttpHeaders.HOST) String host) {
         System.out.println(host);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/demo/params")
+    @GetMapping("/params")
     public ResponseEntity<?> getParams(@RequestParam MultiValueMap<String, String> params){
         params.forEach((key, value) -> {
             System.out.print(key + " : ");
@@ -36,9 +40,33 @@ public class DemoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/demo/param")
+    @GetMapping("/param")
     public ResponseEntity<?> getParams(@RequestParam(required = false) Integer size) {
         System.out.println("size : " + size);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/for-all")
+    @PreAuthorize("permitAll()")
+    public String getForAll()   {
+        return "pour tous";
+    }
+
+    @GetMapping("/for-connected")
+    @PreAuthorize("isAuthenticated()")
+    public String getForConnected(Authentication auth)   {
+        return "pour connected";
+    }
+
+    @GetMapping("/for-user")
+    @RolesAllowed("ROLE_USER")
+    public String getForRoleUser()   {
+        return "pour les roles USER";
+    }
+
+    @GetMapping("/for-admin")
+    @Secured("ROLE_ADMIN")
+    public String getForRoleAdmin()   {
+        return "pour le role ADMIN";
     }
 }
