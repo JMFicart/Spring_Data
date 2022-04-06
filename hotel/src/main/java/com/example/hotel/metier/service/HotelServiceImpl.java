@@ -6,9 +6,11 @@ import com.example.hotel.metier.mapper.HotelMapper;
 import com.example.hotel.models.dtos.HotelDto;
 import com.example.hotel.models.entities.Hotel;
 import com.example.hotel.models.forms.HotelForm;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-//TODO Completer le code
+
+@Service
 public class HotelServiceImpl implements HotelService{
     private final HotelRepository repository;
     private final HotelMapper mapper;
@@ -21,6 +23,10 @@ public class HotelServiceImpl implements HotelService{
     @Override
     public HotelDto insert(HotelForm form) {
         Hotel entity = mapper.formToEntity(form);
+//        if(form.getGerantId())
+//            entity.setGerant(
+//                    gRepo.findById(form.gerantId()
+//            );
         entity = repository.save(entity);
         return mapper.entityToDto(entity);
     }
@@ -41,11 +47,22 @@ public class HotelServiceImpl implements HotelService{
 
     @Override
     public HotelDto update(Long id, HotelForm form) {
-        return null;
+        Hotel entity = repository.findById(id)
+                .orElseThrow(() -> new ElementNotFoundException(id, HotelDto.class));
+        entity.setNom(form.getNom());
+        entity.setNbrEtoile(form.getNbrEtoile());
+        entity.setAdresse(form.getAdresse());
+        entity.setGerant(form.getGerant());
+        entity.setChambres(form.getChambres());
+
+        repository.save(entity);
+        return mapper.entityToDto(entity);
     }
 
     @Override
     public HotelDto delete(Long id) {
-        return null;
+        HotelDto dto = getOne(id);
+        repository.deleteById(id);
+        return dto;
     }
 }

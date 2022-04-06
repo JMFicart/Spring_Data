@@ -4,22 +4,34 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Builder
 public class HotelDto {
-    private Long id;
-    private String nom;
-    private int nbrEtoile;
-    private String adresse;
-    private HotelDto.GerantDto gerant;
+    private final Long id;
+    private final String nom;
+    private final int nbrEtoile;
+    private final String adresse;
+    private final GerantDto gerant;
+    private final List<ChambreDto> chambres;
 
     @Data
     @AllArgsConstructor
     public static class GerantDto{
-        private Long id;
-        private String nom;
-        private String prenom;
-        private LocalDate debutCarriere;
+        private final Long id;
+        private final String nom;
+        private final String prenom;
+        private final LocalDate debutCarriere;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class ChambreDto{
+        private final int numChambre;
+        private final boolean aTele;
+        private final boolean aCuisine;
+        private final boolean aMiniBar;
+        private final float prix;
     }
 }

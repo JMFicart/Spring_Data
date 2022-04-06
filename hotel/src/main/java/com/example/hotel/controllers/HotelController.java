@@ -3,9 +3,7 @@ package com.example.hotel.controllers;
 import com.example.hotel.exceptions.ElementNotFoundException;
 import com.example.hotel.metier.service.HotelService;
 import com.example.hotel.models.dtos.ErrorDto;
-import com.example.hotel.models.dtos.GerantDto;
 import com.example.hotel.models.dtos.HotelDto;
-import com.example.hotel.models.forms.GerantForm;
 import com.example.hotel.models.forms.HotelForm;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -16,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/hotel")
 public class HotelController {
     public final HotelService service;
 
@@ -59,17 +57,4 @@ public class HotelController {
         return ResponseEntity.ok(service.update(ident, form));
     }
 
-    @ExceptionHandler()
-    public ResponseEntity<ErrorDto> handleElementNotFound(ElementNotFoundException ex, HttpServletRequest request){
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(
-                        ErrorDto.builder()
-                                .message(ex.getMessage())
-                                .method(HttpMethod.resolve(request.getMethod()))
-                                .status(404)
-                                .uri(request.getRequestURI())
-                                .build()
-                );
-    }
 }

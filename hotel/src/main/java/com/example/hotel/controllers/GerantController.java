@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 // aiguillage entre requete http et actions à faire
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/gerant")
 public class GerantController {
     public final GerantService service;
 
@@ -49,7 +50,7 @@ public class GerantController {
     // POST - http://localhost:8080/gerant
     //      - http://localhost:8080/gerant/add
     @PostMapping({"", "/add"})
-    public ResponseEntity insert(@RequestBody GerantForm form){
+    public ResponseEntity insert(@Valid @RequestBody GerantForm form){
 //        try {
             return ResponseEntity.ok(service.insert(form));
 //        }
