@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Liste des produits</title>
+</head>
+<body>
+    <div th:replace="~{fragments :: header }">
+    </div>
+
+    <div th:replace="~{fragments :: #truc}">
+    </div>
+
+    <h1>Liste des produits (taille : <span th:text="${produit_liste.size}"></span>)</h1>
+    <ul>
+        <li th:each="produit : ${produit_liste}" th:object="${produit}">
+        <p th:text="|marque: *{marque}|"></p>
+        <p th:text="|modele: *{modele}|"></p>
+        <p th:text="|prix: *{prix}|"></p>
+        <p><a th:href="@{/produit/{id}(id=*{id}, param1='param1')}">Détails</a></p>
+        </li>
+    </ul>
+
+    <div th:insert="~{fragments :: footer }">
+    </div>
+</body>
+</html>

@@ -59,7 +59,12 @@ public class ProduitService {
                 .orElseThrow();
     }
 
+    public List<Produit> getMarque(String m){
+        return produits.stream().filter(e -> e.getMarque().equals(m) )
+                .toList();
+    }
+
     public List<Produit> getAll(){
-        return new ArrayList<Produit>();
+        return new ArrayList<Produit>(produits);
     }
 }
