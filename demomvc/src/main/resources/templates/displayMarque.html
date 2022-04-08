@@ -6,9 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Liste des produits par marque</title>
+    <link rel="stylesheet" href="../statis/css/main.css">
 </head>
 <body>
     <h1>Liste des produits par marque</h1>
+    <h2 th:text="|Marque : ${marque}|"></h2>
     <ul>
         <li th:each="produit : ${produit_liste}" th:object="${produit}">
             <p th:text="|marque: *{marque}|"></p>
@@ -16,5 +18,7 @@
             <p th:text="|prix: *{prix}|"></p>
         </li>
     </ul>
+    <script src="../static/js/script.js" th:src="@{/js/script.js}"></<script>
+
 </body>
 </html>

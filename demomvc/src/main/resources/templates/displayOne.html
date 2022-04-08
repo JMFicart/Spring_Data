@@ -5,16 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../statis/css/main.css">
     <title>Produit</title>
 </head>
 <body>
     <th:block th:object="${produit}" >
         <h1 th:text="|Id produit : ${produit.id} |"></h1>
-        <p th:text="|Marque produit : ${produit.marque} |"> </p>  <a th:href="|/produit/bymarque/${produit.marque}|">Filtre</a>
+        <p th:text="|Marque produit : ${produit.marque} |"> </p>  <a th:href="@{/produit/bymarque/${produit.marque}}">Filtre</a>
         <p th:text="|Modèle produit : ${produit.modele} |"></p>
         <p th:text="|Prix produit : ${produit.prix} euros|"></p>
         <p th:text="${produit.enVente} ? 'disponible' : 'indisponible'"></p>
         <p><a href="/produit">Retour</a></p>
     </th:block>
+    <script src="../static/js/script.js" th:src="@{/js/script.js}"></<script>
+
 </body>
 </html>

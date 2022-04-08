@@ -18,6 +18,11 @@ public class ProduitController {
         this.service = service;
     }
 
+    @ModelAttribute("get_all")
+    public List<Produit> getAll(){
+        return service.getAll();
+    }
+
     @GetMapping("/{id}")
     public String displayOne(@PathVariable int id, Model model){
         Produit p = service.getOne(id);
@@ -34,7 +39,8 @@ public class ProduitController {
 
     @GetMapping("/bymarque")
     public String displayMarque(@RequestParam String marque, Model model){
-        model.addAttribute("produit_marque", service.getAllmarque);
+        model.addAttribute("produit_marque", service.getMarque(marque));
+        model.addAttribute("brand", marque);
         return "displayMarque";
     }
 
