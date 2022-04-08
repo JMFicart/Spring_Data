@@ -1,0 +1,12 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" th:replace="~{/layout/layout :: layout(~{::content},~{::css})}">
+    <th:block th:object="${produit}" th:fragment="content">
+<!--    th:href="@{/css/specific.css}"-->
+        <h1 th:text="|Id produit : ${produit.id} |"></h1>
+        <p th:text="|Marque produit : ${produit.marque} |"> </p>  <a th:href="@{/produit/bymarque/${produit.marque}}">Filtre</a>
+        <p th:text="|Modèle produit : ${produit.modele} |"></p>
+        <p th:text="|Prix produit : ${produit.prix} euros|"></p>
+        <p th:text="${produit.enVente} ? 'disponible' : 'indisponible'"></p>
+        <p><a href="/produit">Retour</a></p>
+    </th:block>
+</html>

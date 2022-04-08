@@ -1,6 +1,7 @@
 package com.example.demomvc.service;
 
 import com.example.demomvc.models.Produit;
+import com.example.demomvc.models.ProduitForm;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 @Service
 public class ProduitService {
     private final List<Produit> produits;
+    private int nextId = 5;
 
     public ProduitService() {
         produits = new ArrayList<>();
@@ -66,5 +68,18 @@ public class ProduitService {
 
     public List<Produit> getAll(){
         return new ArrayList<Produit>(produits);
+    }
+
+    public  Produit insert(ProduitForm form){
+        Produit produit = Produit.builder()
+                .id(++nextId)
+                .marque(form.getMarque())
+                .modele(form.getModele())
+                .prix(form.getPrix())
+                .enVente(true)
+                .build();
+
+        produits.add(produit);
+        return produit;
     }
 }

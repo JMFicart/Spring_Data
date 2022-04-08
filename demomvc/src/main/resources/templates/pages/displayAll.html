@@ -1,0 +1,16 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:replace="~{/layout/layout :: layout(~{::content},_)}">
+    <th:block th:fragment="content" th:with="list=${get_all}">
+        <h1>Liste des produits (taille : <span th:text="${produit_liste.size}"></span>)</h1>
+
+        <a th:href="@{/produit}"
+        <ul>
+            <li th:each="produit : ${produit_liste}" th:object="${produit}">
+                <p th:text="|marque: *{marque}|"></p>
+                <p th:text="|modele: *{modele}|"></p>
+                <p th:text="|prix: *{prix}|"></p>
+                <p><a th:href="@{/produit/{id}(id=*{id}, param1='param1')}">Détails</a></p>
+            </li>
+        </ul>
+    </th:block>
+</html>
